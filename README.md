@@ -13,6 +13,12 @@ Features
  - Create your own modpacks
  - Import modpacks
 
+Screenshots
+-------------
+
+![A screenshot](http://i.imgur.com/m8BN3u1.png)
+![Another screenshot](http://i.imgur.com/U902POD.png)
+
 Download
 -------------------
 
