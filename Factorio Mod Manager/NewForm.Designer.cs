@@ -284,7 +284,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1373, 621);
             this.tableLayoutPanel1.TabIndex = 0;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // tableLayoutPanel5
             // 
@@ -439,7 +438,6 @@
             this.modList.UseCompatibleStateImageBehavior = false;
             this.modList.UseFiltering = true;
             this.modList.View = System.Windows.Forms.View.Details;
-            this.modList.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.modList_FormatRow);
             // 
             // title
             // 
@@ -551,7 +549,6 @@
             this.modPackContent.TabIndex = 16;
             this.modPackContent.UseCompatibleStateImageBehavior = false;
             this.modPackContent.View = System.Windows.Forms.View.Details;
-            this.modPackContent.CanDrop += new System.EventHandler<BrightIdeasSoftware.OlvDropEventArgs>(this.modPackContent_CanDrop);
             this.modPackContent.ModelCanDrop += new System.EventHandler<BrightIdeasSoftware.ModelDropEventArgs>(this.modPackContent_ModelCanDrop);
             // 
             // olvColumn5
@@ -632,8 +629,6 @@
             this.modPacksList.UseCompatibleStateImageBehavior = false;
             this.modPacksList.View = System.Windows.Forms.View.Details;
             this.modPacksList.CellClick += new System.EventHandler<BrightIdeasSoftware.CellClickEventArgs>(this.modPacksList_CellClick);
-            this.modPacksList.SelectionChanged += new System.EventHandler(this.modPacksList_SelectionChanged);
-            this.modPacksList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.modPacksList_MouseClick);
             // 
             // olvColumn9
             // 

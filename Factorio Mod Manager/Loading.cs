@@ -20,6 +20,19 @@ namespace Factorio_Mod_Manager
             pictureBox1.Hide();
         }
 
+        public Loading(string text, bool showPictureBox = false, Size size = new Size())
+        {
+            InitializeComponent();
+
+            if (!showPictureBox)
+                pictureBox1.Hide();
+
+            if (size != new Size())
+                Size = size;
+
+            SetText(text);
+        }
+
         public ProgressBar progressBar
         {
             get
