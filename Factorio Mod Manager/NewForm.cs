@@ -93,16 +93,6 @@ namespace Factorio_Mod_Manager
             }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
         /// <summary>
         /// Mod Management
         /// </summary>

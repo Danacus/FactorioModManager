@@ -17,7 +17,7 @@ namespace Factorio_Mod_Manager
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
-            Application.Run(new NewForm());
+            Application.Run(new QuickLaunch());
         }
     }
 }
