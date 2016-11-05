@@ -55,31 +55,44 @@ namespace Factorio_Mod_Manager
         {
             if (url == null)
             {
-                MessageBox.Show("Failed to download mod!");
+                MessageBox.Show(
+                    "Failed to download mod: '" + modTitle + "', url was invalid"
+                );
                 downloadIndex++;
                 Download();
 
                 return;
             }
 
-            foreach (string f in Directory.GetFiles(StaticVar.gameFolder + "mods/"))
+            var files = Directory.EnumerateFiles(StaticVar.gameFolder + "mods/", "*.zip");
+            foreach (var f in files)
             {
-                if (f.Contains(".zip"))
-                {
-                    string name = f.Split('/')[f.Split('/').Length - 1];
-                    name = name.Replace(".zip", "");
-                    string version = name.Split('_')[name.Split('_').Length - 1];
-                    string title = name.Replace("_" + version, "");
+                string name = Path.GetFileNameWithoutExtension(f);
+                //string version = name.Split('_')[Length - 1];
+                string title = name.Split('_')[0];
 
-                    if (title == modTitle)
-                    {
-                        File.Delete(f);
-                    }
+                if (title == modTitle)
+                {
+                    File.Delete(f);
                 }
             }
 
+            String downloadUrl = String.Format(
+                "https://mods.factorio.com{0}?username={1}&token={2}",
+                url,
+                userData.username,
+                userData.token
+            );
+            var splitUrl = url.Replace("%20", " ").Split('/');
+            String modName = splitUrl[splitUrl.Length - 1];
+            String destination = String.Format(
+                "{0}mods/{1}",
+                StaticVar.gameFolder,
+                modName
+            );
+
             WebClient client = new WebClient();
-            client.DownloadFileAsync(new Uri("https://mods.factorio.com" + url + "?username=" + userData.username + "&token=" + userData.token), StaticVar.gameFolder + "mods/" + url.Replace("%20", " ").Split('/')[url.Split('/').Length - 1]);
+            client.DownloadFileAsync(new Uri(downloadUrl), destination);
             client.DownloadFileCompleted += client_downloadCompleted;
 
         }

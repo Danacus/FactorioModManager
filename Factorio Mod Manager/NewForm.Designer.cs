@@ -54,6 +54,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
+            this.launchButton = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.modList = new BrightIdeasSoftware.ObjectListView();
             this.title = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.name = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -343,32 +345,37 @@
             // 
             // tableLayoutPanel7
             // 
-            this.tableLayoutPanel7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.tableLayoutPanel7.ColumnCount = 5;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel7.ColumnCount = 7;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel7.Controls.Add(this.button3, 3, 0);
             this.tableLayoutPanel7.Controls.Add(this.button2, 2, 0);
             this.tableLayoutPanel7.Controls.Add(this.button1, 1, 0);
             this.tableLayoutPanel7.Controls.Add(this.button7, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.launchButton, 6, 0);
+            this.tableLayoutPanel7.Controls.Add(this.comboBox1, 5, 0);
             this.tableLayoutPanel7.Location = new System.Drawing.Point(686, 0);
             this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 2;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(548, 28);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(687, 28);
             this.tableLayoutPanel7.TabIndex = 14;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(330, 3);
+            this.button3.Location = new System.Drawing.Point(303, 3);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(103, 20);
+            this.button3.Size = new System.Drawing.Size(94, 20);
             this.button3.TabIndex = 19;
             this.button3.Text = "Delete";
             this.button3.UseVisualStyleBackColor = true;
@@ -376,9 +383,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(221, 3);
+            this.button2.Location = new System.Drawing.Point(203, 3);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(103, 20);
+            this.button2.Size = new System.Drawing.Size(94, 20);
             this.button2.TabIndex = 18;
             this.button2.Text = "Disable";
             this.button2.UseVisualStyleBackColor = true;
@@ -386,9 +393,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(112, 3);
+            this.button1.Location = new System.Drawing.Point(103, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(103, 20);
+            this.button1.Size = new System.Drawing.Size(94, 20);
             this.button1.TabIndex = 17;
             this.button1.Text = "Enable";
             this.button1.UseVisualStyleBackColor = true;
@@ -398,11 +405,35 @@
             // 
             this.button7.Location = new System.Drawing.Point(3, 3);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(103, 20);
+            this.button7.Size = new System.Drawing.Size(94, 20);
             this.button7.TabIndex = 16;
             this.button7.Text = "New Modpack";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // launchButton
+            // 
+            this.launchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.launchButton.Location = new System.Drawing.Point(590, 3);
+            this.launchButton.Name = "launchButton";
+            this.launchButton.Size = new System.Drawing.Size(94, 20);
+            this.launchButton.TabIndex = 21;
+            this.launchButton.Text = "Play";
+            this.launchButton.UseVisualStyleBackColor = true;
+            this.launchButton.Click += new System.EventHandler(this.launchButton_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(490, 3);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(94, 21);
+            this.comboBox1.TabIndex = 20;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBox1.SelectionChangeCommitted += new System.EventHandler(this.comboBox1_SelectionChangeCommitted);
+            this.comboBox1.SelectedValueChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
             // 
             // modList
             // 
@@ -438,6 +469,8 @@
             this.modList.UseCompatibleStateImageBehavior = false;
             this.modList.UseFiltering = true;
             this.modList.View = System.Windows.Forms.View.Details;
+            this.modList.ModelCanDrop += new System.EventHandler<BrightIdeasSoftware.ModelDropEventArgs>(this.modList_ModelCanDrop);
+            this.modList.SelectedIndexChanged += new System.EventHandler(this.modList_SelectedIndexChanged);
             // 
             // title
             // 
@@ -541,6 +574,7 @@
             this.olvColumn13,
             this.olvColumn14,
             this.olvColumn15});
+            this.modPackContent.IsSimpleDragSource = true;
             this.modPackContent.IsSimpleDropSink = true;
             this.modPackContent.Location = new System.Drawing.Point(3, 284);
             this.modPackContent.Name = "modPackContent";
@@ -550,6 +584,7 @@
             this.modPackContent.UseCompatibleStateImageBehavior = false;
             this.modPackContent.View = System.Windows.Forms.View.Details;
             this.modPackContent.ModelCanDrop += new System.EventHandler<BrightIdeasSoftware.ModelDropEventArgs>(this.modPackContent_ModelCanDrop);
+            this.modPackContent.DragDrop += new System.Windows.Forms.DragEventHandler(this.modPackContent_DragDrop);
             // 
             // olvColumn5
             // 
@@ -733,5 +768,7 @@
         private BrightIdeasSoftware.OLVColumn status;
         private BrightIdeasSoftware.OLVColumn olvColumn15;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button launchButton;
     }
 }

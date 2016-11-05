@@ -59,6 +59,15 @@ namespace Factorio_Mod_Manager
                     mods.Add(m);
             }
         }
+
+        public void RemoveMods(List<Mod> newMods)
+        {
+            foreach (Mod m in newMods)
+            {
+                if (mods.Contains(m))
+                    mods.Remove(m);
+            }
+        }
     }
 
     public class SimpleModPack

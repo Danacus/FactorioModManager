@@ -15,6 +15,7 @@ namespace Factorio_Mod_Manager
     public partial class DownloadPrompt : Form
     {
         private Action cb;
+        private Action deniedCallback = () => { };
 
         public DownloadPrompt()
         {
@@ -38,10 +39,21 @@ namespace Factorio_Mod_Manager
             cb = callback;
         }
 
+        public void SetDeniedCallback(Action callback)
+        {
+            deniedCallback = callback;
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
-
             cb();
+            Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            deniedCallback();
+            Close();
         }
     }
 }

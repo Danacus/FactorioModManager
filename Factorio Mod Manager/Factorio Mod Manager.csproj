@@ -62,28 +62,12 @@
       <HintPath>..\packages\ObjectListView.2.7.1.5\lib\ListViewPrinter.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
-      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MetroFramework.Design, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
-      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Design.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MetroFramework.Fonts, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
-      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ObjectListView, Version=2.7.1.31255, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4, processorArchitecture=MSIL">
       <HintPath>..\packages\ObjectListView.2.7.1.5\lib\ObjectListView.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SparkleLibrary, Version=2.7.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ObjectListView.2.7.1.5\lib\SparkleLibrary.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -115,6 +99,8 @@
     <Compile Include="DownloadPrompt.Designer.cs">
       <DependentUpon>DownloadPrompt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Executable.cs" />
+    <Compile Include="ExecutableManager.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="ListViewExtensions.cs" />
     <Compile Include="Loading.cs">
@@ -127,7 +113,13 @@
     <Compile Include="ModList.cs" />
     <Compile Include="ModPack.cs" />
     <Compile Include="ModPackLoader.cs" />
-    <Compile Include="ModReader.cs" />
+    <Compile Include="ModLoader.cs" />
+    <Compile Include="NewExecutable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewExecutable.Designer.cs">
+      <DependentUpon>NewExecutable.cs</DependentUpon>
+    </Compile>
     <Compile Include="NewForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Loading.resx">
       <DependentUpon>Loading.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewExecutable.resx">
+      <DependentUpon>NewExecutable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewForm.resx">
       <DependentUpon>NewForm.cs</DependentUpon>

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Factorio_Mod_Manager
 {
-    public class ModReader
+    public class ModLoader
     {
         public List<Mod> LoadMods()
         {
@@ -116,10 +116,17 @@ namespace Factorio_Mod_Manager
 
         }
 
-        public List<Mod> LoadOnlineMods()
+        public List<Mod> LoadOnlineMods(bool online)
         {
             List<Mod> onlineModList = new List<Mod>();
-            string info = DownloadModsInfo();
+
+            string info;
+
+            if (!online)
+                info = File.ReadAllText(StaticVar.gameFolder + "ModManagerCache.json");
+            else
+                info = DownloadModsInfo();
+
             dynamic data = JsonConvert.DeserializeObject(info);
 
             foreach (dynamic d in data.results)
@@ -127,6 +134,8 @@ namespace Factorio_Mod_Manager
                 Mod m = new Mod((string)d.latest_release.info_json.title, (string)d.latest_release.info_json.name, null, new Version((string)d.latest_release.info_json.version), new Version((string)d.latest_release.info_json.factorio_version), (int)d.downloads_count, (string)d.latest_release.download_url, false, false, null);
                 onlineModList.Add(m);
             }
+
+            File.WriteAllText(StaticVar.gameFolder + "ModManagerCache.json", info);
 
             return onlineModList;
         }

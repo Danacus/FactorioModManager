@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -21,9 +22,10 @@ namespace Factorio_Mod_Manager
         public List<Mod> onlineModList = new List<Mod>();
         public List<Mod> finalModList = new List<Mod>();
         public List<Mod> installedMods = new List<Mod>();
-        public ModReader modReader = new ModReader();
+        public ModLoader modReader = new ModLoader();
         public ModPackLoader modPackLoader = new ModPackLoader();
         public DownloadManager downloadManager;
+        public ExecutableManager executableManager = new ExecutableManager();
 
         public NewForm()
         {
@@ -40,7 +42,7 @@ namespace Factorio_Mod_Manager
             }
 
             //Load mods in mod portal
-            LoadAllModsOnline(() => { modList.RefreshMods(this); LoadAllModPacks(() => { }); });
+            LoadAllModsOnline(() => { modList.RefreshMods(this); LoadAllModPacks(() => { }); executableManager.LoadExecutables(); SetExecutables(); });
             //LoadAllModsInstalled will finish before LoadAllModsOnline, so the final modlist can be created after loading the online mods
             LoadAllModsInstalled(() => { });
             downloadManager = new DownloadManager(userData);
@@ -58,6 +60,47 @@ namespace Factorio_Mod_Manager
         protected override void SetVisibleCore(bool value)
         {
             base.SetVisibleCore(allowshowdisplay ? value : allowshowdisplay);
+        }
+
+        public void SetExecutables()
+        {
+            comboBox1.Items.Clear();
+
+            foreach (Executable e in executableManager.executables)
+            {
+                comboBox1.Items.Add("Factorio " + e.version);
+            }
+
+            comboBox1.Items.Add("Add Executable ...");
+        }
+
+        private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedItem.ToString() == "Add Executable ...")
+            {
+                executableManager.AddExecutable();
+                SetExecutables();
+            }
+        }
+
+        private void launchButton_Click(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedItem == null) return;
+
+            if (comboBox1.SelectedItem.ToString() != "Add Executable ...")
+            {
+                executableManager.RunExecutable(executableManager.executables[comboBox1.Items.IndexOf(comboBox1.SelectedItem)]);
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
+        {
+
         }
 
         /// <summary>
@@ -87,15 +130,43 @@ namespace Factorio_Mod_Manager
         public void LoadAllModsOnline(Action callback)
         {
             //Show Loading form and hide NewForm
-            Loading loading = new Loading("Downloading Modlist ...", true, new Size(900, 600));
-            loading.Show();
-            Hide();
 
             BackgroundWorker bw = new BackgroundWorker();
 
+            Loading loading = loading = new Loading("Downloading Modlist ...", true, new Size(900, 600));
+            bool online = false;
+
+            if (File.Exists(StaticVar.gameFolder + "ModManagerCache.json"))
+            {
+                DownloadPrompt prompt = new DownloadPrompt();
+                prompt.Show();
+                prompt.SetText("Do you want to update the mod list?");
+                prompt.SetTitle("Update mod list");
+                prompt.SetFinishedCallback(() =>
+                {
+
+                    loading.Show();
+                    Hide();
+                    online = true;
+                    bw.RunWorkerAsync();
+                });
+                prompt.SetDeniedCallback(() =>
+                {
+                    online = false;
+                    bw.RunWorkerAsync();
+                });
+            }
+            else
+            {
+                loading.Show();
+                Hide();
+                online = true;
+                bw.RunWorkerAsync();
+            }
+
             bw.DoWork += (sender, args) =>
             {
-                onlineModList = modReader.LoadOnlineMods();
+                onlineModList = modReader.LoadOnlineMods(online);
             };
             bw.RunWorkerCompleted += (sender, args) =>
             {
@@ -111,7 +182,6 @@ namespace Factorio_Mod_Manager
                 callback();
             };
 
-            bw.RunWorkerAsync();
         }
 
         private void autoUpdate_Click(object sender, EventArgs e)
@@ -299,6 +369,46 @@ namespace Factorio_Mod_Manager
             selected.Save();
             modPackContent.SetObjects(selected.mods);
             selectedModpack.Text = "Selected Modpack: " + name;
+
+            RefreshMods();
         }
+
+        private void modList_ModelCanDrop(object sender, ModelDropEventArgs e)
+        {
+            if (selected == null)
+            {
+                e.Effect = DragDropEffects.None;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.Copy;
+
+                List<Mod> selection = new List<Mod>();
+                selection = modPackContent.SelectedObjects.Cast<Mod>().ToList();
+
+                if (selection.Count == 0) return;
+
+                Console.WriteLine("Remove mods " + selection.Count);
+
+                selected.RemoveMods(selection);
+            }
+
+            selected.Save();
+            modPackContent.SetObjects(selected.mods);
+            selectedModpack.Text = "Selected Modpack: " + name;
+
+            RefreshMods();
+        }
+
+        private void modPackContent_DragDrop(object sender, DragEventArgs e)
+        {
+
+        }
+
+        private void modList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

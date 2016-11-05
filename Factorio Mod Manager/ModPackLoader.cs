@@ -14,10 +14,10 @@ namespace Factorio_Mod_Manager
         {
             List<ModPack> modPacks = new List<ModPack>();
 
-            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Factorio/modpacks/"))
-                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Factorio/modpacks/");
+            if (!Directory.Exists(StaticVar.gameFolder + "modpacks/"))
+                Directory.CreateDirectory(StaticVar.gameFolder + "modpacks/");
 
-            foreach (string file in Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Factorio/modpacks/"))
+            foreach (string file in Directory.GetFiles(StaticVar.gameFolder + "modpacks/"))
             {
 
                 if (!file.Contains(".json")) break;
